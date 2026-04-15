@@ -1,0 +1,1593 @@
+{
+  "metadata": {
+    "report_title": "Carrier Performance Comparison",
+    "customer_name": "Demo Customer",
+    "period_start": "2025-01-01",
+    "period_end": "2025-12-31",
+    "geography": "UK",
+    "carriers": [
+      "Carrier A",
+      "Carrier B"
+    ],
+    "services": [
+      "Next Day",
+      "Standard"
+    ],
+    "intent": "tendering",
+    "peak_window": "2025-11-15 to 2025-12-23",
+    "total_shipments_analysed": 47533,
+    "generated_at": "2026-04-15T05:01:30Z"
+  },
+  "on_time_performance": {
+    "overall_otd": {
+      "Carrier A": {
+        "otd_pct": 88.2,
+        "total_shipments": 28354,
+        "on_time": 25008,
+        "late": 3346
+      },
+      "Carrier B": {
+        "otd_pct": 88.5,
+        "total_shipments": 19179,
+        "on_time": 16968,
+        "late": 2211
+      }
+    },
+    "by_service": {
+      "Carrier A|Next Day": {
+        "otd_pct": 90.4,
+        "total_shipments": 8328,
+        "on_time": 7526,
+        "late": 802
+      },
+      "Carrier A|Standard": {
+        "otd_pct": 87.3,
+        "total_shipments": 20026,
+        "on_time": 17482,
+        "late": 2544
+      },
+      "Carrier B|Next Day": {
+        "otd_pct": 87.2,
+        "total_shipments": 5758,
+        "on_time": 5020,
+        "late": 738
+      },
+      "Carrier B|Standard": {
+        "otd_pct": 89.0,
+        "total_shipments": 13421,
+        "on_time": 11948,
+        "late": 1473
+      }
+    }
+  },
+  "weekly_consistency": {
+    "by_carrier": {
+      "Carrier A": {
+        "weekly_otd_values": [
+          91.1,
+          86.9,
+          87.9,
+          89.1,
+          89.7,
+          85.3,
+          91.3,
+          90.3,
+          88.9,
+          91.6,
+          86.6,
+          92.2,
+          87.3,
+          90.2,
+          85.8,
+          87.3,
+          92.4,
+          92.5,
+          90.4,
+          88.8,
+          89.6,
+          85.6,
+          87.7,
+          91.2,
+          90.6,
+          88.3,
+          89.0,
+          90.3,
+          92.1,
+          86.8,
+          87.6,
+          84.9,
+          83.9,
+          87.5,
+          85.7,
+          90.6,
+          91.2,
+          85.3,
+          92.2,
+          84.8,
+          88.9,
+          89.5,
+          89.3,
+          91.1,
+          88.2,
+          92.5,
+          82.8,
+          85.6,
+          79.9,
+          79.2,
+          82.2,
+          88.9,
+          87.4
+        ],
+        "weeks": [
+          "2025-W01",
+          "2025-W02",
+          "2025-W03",
+          "2025-W04",
+          "2025-W05",
+          "2025-W06",
+          "2025-W07",
+          "2025-W08",
+          "2025-W09",
+          "2025-W10",
+          "2025-W11",
+          "2025-W12",
+          "2025-W13",
+          "2025-W14",
+          "2025-W15",
+          "2025-W16",
+          "2025-W17",
+          "2025-W18",
+          "2025-W19",
+          "2025-W20",
+          "2025-W21",
+          "2025-W22",
+          "2025-W23",
+          "2025-W24",
+          "2025-W25",
+          "2025-W26",
+          "2025-W27",
+          "2025-W28",
+          "2025-W29",
+          "2025-W30",
+          "2025-W31",
+          "2025-W32",
+          "2025-W33",
+          "2025-W34",
+          "2025-W35",
+          "2025-W36",
+          "2025-W37",
+          "2025-W38",
+          "2025-W39",
+          "2025-W40",
+          "2025-W41",
+          "2025-W42",
+          "2025-W43",
+          "2025-W44",
+          "2025-W45",
+          "2025-W46",
+          "2025-W47",
+          "2025-W48",
+          "2025-W49",
+          "2025-W50",
+          "2025-W51",
+          "2025-W52",
+          "2026-W01"
+        ],
+        "std_dev": 3.1,
+        "pct_weeks_above_95": 0.0,
+        "mean_weekly_otd": 88.2
+      },
+      "Carrier B": {
+        "weekly_otd_values": [
+          97.7,
+          82.7,
+          81.3,
+          94.0,
+          97.3,
+          93.8,
+          93.6,
+          97.0,
+          86.5,
+          79.8,
+          87.0,
+          94.2,
+          80.0,
+          88.7,
+          90.3,
+          85.1,
+          94.6,
+          91.7,
+          99.5,
+          92.8,
+          87.3,
+          88.3,
+          86.0,
+          93.0,
+          81.7,
+          86.4,
+          91.9,
+          86.3,
+          83.9,
+          76.2,
+          80.2,
+          88.6,
+          88.7,
+          95.2,
+          91.6,
+          91.4,
+          86.0,
+          96.1,
+          94.0,
+          93.0,
+          84.1,
+          94.7,
+          91.9,
+          96.4,
+          90.7,
+          99.1,
+          69.9,
+          84.4,
+          80.6,
+          75.3,
+          68.5,
+          84.9,
+          99.5
+        ],
+        "weeks": [
+          "2025-W01",
+          "2025-W02",
+          "2025-W03",
+          "2025-W04",
+          "2025-W05",
+          "2025-W06",
+          "2025-W07",
+          "2025-W08",
+          "2025-W09",
+          "2025-W10",
+          "2025-W11",
+          "2025-W12",
+          "2025-W13",
+          "2025-W14",
+          "2025-W15",
+          "2025-W16",
+          "2025-W17",
+          "2025-W18",
+          "2025-W19",
+          "2025-W20",
+          "2025-W21",
+          "2025-W22",
+          "2025-W23",
+          "2025-W24",
+          "2025-W25",
+          "2025-W26",
+          "2025-W27",
+          "2025-W28",
+          "2025-W29",
+          "2025-W30",
+          "2025-W31",
+          "2025-W32",
+          "2025-W33",
+          "2025-W34",
+          "2025-W35",
+          "2025-W36",
+          "2025-W37",
+          "2025-W38",
+          "2025-W39",
+          "2025-W40",
+          "2025-W41",
+          "2025-W42",
+          "2025-W43",
+          "2025-W44",
+          "2025-W45",
+          "2025-W46",
+          "2025-W47",
+          "2025-W48",
+          "2025-W49",
+          "2025-W50",
+          "2025-W51",
+          "2025-W52",
+          "2026-W01"
+        ],
+        "std_dev": 7.2,
+        "pct_weeks_above_95": 17.0,
+        "mean_weekly_otd": 88.6
+      }
+    },
+    "by_service": {
+      "Carrier A|Next Day": {
+        "weekly_otd_values": [
+          92.7,
+          90.1,
+          92.0,
+          94.3,
+          86.3,
+          84.8,
+          91.9,
+          91.3,
+          89.8,
+          91.6,
+          87.3,
+          93.8,
+          89.7,
+          90.1,
+          89.8,
+          89.3,
+          91.3,
+          93.6,
+          93.1,
+          90.9,
+          91.2,
+          85.4,
+          89.3,
+          91.7,
+          95.5,
+          93.5,
+          85.8,
+          93.5,
+          92.9,
+          89.7,
+          95.5,
+          86.5,
+          87.2,
+          93.9,
+          91.4,
+          90.2,
+          92.9,
+          87.5,
+          97.1,
+          88.7,
+          91.0,
+          93.5,
+          92.7,
+          94.4,
+          92.7,
+          94.9,
+          85.7,
+          87.7,
+          85.0,
+          80.1,
+          82.6,
+          90.9,
+          87.8
+        ],
+        "weeks": [
+          "2025-W01",
+          "2025-W02",
+          "2025-W03",
+          "2025-W04",
+          "2025-W05",
+          "2025-W06",
+          "2025-W07",
+          "2025-W08",
+          "2025-W09",
+          "2025-W10",
+          "2025-W11",
+          "2025-W12",
+          "2025-W13",
+          "2025-W14",
+          "2025-W15",
+          "2025-W16",
+          "2025-W17",
+          "2025-W18",
+          "2025-W19",
+          "2025-W20",
+          "2025-W21",
+          "2025-W22",
+          "2025-W23",
+          "2025-W24",
+          "2025-W25",
+          "2025-W26",
+          "2025-W27",
+          "2025-W28",
+          "2025-W29",
+          "2025-W30",
+          "2025-W31",
+          "2025-W32",
+          "2025-W33",
+          "2025-W34",
+          "2025-W35",
+          "2025-W36",
+          "2025-W37",
+          "2025-W38",
+          "2025-W39",
+          "2025-W40",
+          "2025-W41",
+          "2025-W42",
+          "2025-W43",
+          "2025-W44",
+          "2025-W45",
+          "2025-W46",
+          "2025-W47",
+          "2025-W48",
+          "2025-W49",
+          "2025-W50",
+          "2025-W51",
+          "2025-W52",
+          "2026-W01"
+        ],
+        "std_dev": 3.5,
+        "pct_weeks_above_95": 5.7,
+        "mean_weekly_otd": 90.4
+      },
+      "Carrier A|Standard": {
+        "weekly_otd_values": [
+          90.5,
+          85.6,
+          86.3,
+          87.0,
+          91.1,
+          85.6,
+          91.0,
+          89.8,
+          88.5,
+          91.6,
+          86.4,
+          91.3,
+          86.4,
+          90.3,
+          84.0,
+          86.4,
+          92.8,
+          92.0,
+          88.9,
+          87.9,
+          89.0,
+          85.6,
+          87.0,
+          90.9,
+          88.6,
+          86.2,
+          90.3,
+          89.2,
+          91.8,
+          85.7,
+          84.6,
+          84.3,
+          82.5,
+          84.9,
+          83.3,
+          90.7,
+          90.5,
+          84.2,
+          90.5,
+          82.9,
+          88.0,
+          87.7,
+          87.9,
+          89.9,
+          86.5,
+          91.5,
+          81.5,
+          84.8,
+          77.7,
+          78.8,
+          82.0,
+          88.0,
+          87.3
+        ],
+        "weeks": [
+          "2025-W01",
+          "2025-W02",
+          "2025-W03",
+          "2025-W04",
+          "2025-W05",
+          "2025-W06",
+          "2025-W07",
+          "2025-W08",
+          "2025-W09",
+          "2025-W10",
+          "2025-W11",
+          "2025-W12",
+          "2025-W13",
+          "2025-W14",
+          "2025-W15",
+          "2025-W16",
+          "2025-W17",
+          "2025-W18",
+          "2025-W19",
+          "2025-W20",
+          "2025-W21",
+          "2025-W22",
+          "2025-W23",
+          "2025-W24",
+          "2025-W25",
+          "2025-W26",
+          "2025-W27",
+          "2025-W28",
+          "2025-W29",
+          "2025-W30",
+          "2025-W31",
+          "2025-W32",
+          "2025-W33",
+          "2025-W34",
+          "2025-W35",
+          "2025-W36",
+          "2025-W37",
+          "2025-W38",
+          "2025-W39",
+          "2025-W40",
+          "2025-W41",
+          "2025-W42",
+          "2025-W43",
+          "2025-W44",
+          "2025-W45",
+          "2025-W46",
+          "2025-W47",
+          "2025-W48",
+          "2025-W49",
+          "2025-W50",
+          "2025-W51",
+          "2025-W52",
+          "2026-W01"
+        ],
+        "std_dev": 3.4,
+        "pct_weeks_above_95": 0.0,
+        "mean_weekly_otd": 87.3
+      },
+      "Carrier B|Next Day": {
+        "weekly_otd_values": [
+          97.1,
+          82.4,
+          83.5,
+          89.4,
+          99.2,
+          92.3,
+          91.0,
+          96.3,
+          82.4,
+          73.1,
+          85.3,
+          91.5,
+          78.9,
+          87.5,
+          90.2,
+          84.1,
+          91.3,
+          91.1,
+          98.3,
+          95.6,
+          88.9,
+          82.9,
+          79.3,
+          90.4,
+          80.4,
+          82.0,
+          93.3,
+          81.0,
+          82.2,
+          78.6,
+          81.5,
+          81.1,
+          90.9,
+          94.9,
+          90.0,
+          89.7,
+          80.7,
+          95.4,
+          89.5,
+          87.9,
+          84.8,
+          93.5,
+          87.2,
+          96.4,
+          88.0,
+          100.0,
+          69.6,
+          85.8,
+          85.0,
+          75.5,
+          70.1,
+          85.7,
+          100.0
+        ],
+        "weeks": [
+          "2025-W01",
+          "2025-W02",
+          "2025-W03",
+          "2025-W04",
+          "2025-W05",
+          "2025-W06",
+          "2025-W07",
+          "2025-W08",
+          "2025-W09",
+          "2025-W10",
+          "2025-W11",
+          "2025-W12",
+          "2025-W13",
+          "2025-W14",
+          "2025-W15",
+          "2025-W16",
+          "2025-W17",
+          "2025-W18",
+          "2025-W19",
+          "2025-W20",
+          "2025-W21",
+          "2025-W22",
+          "2025-W23",
+          "2025-W24",
+          "2025-W25",
+          "2025-W26",
+          "2025-W27",
+          "2025-W28",
+          "2025-W29",
+          "2025-W30",
+          "2025-W31",
+          "2025-W32",
+          "2025-W33",
+          "2025-W34",
+          "2025-W35",
+          "2025-W36",
+          "2025-W37",
+          "2025-W38",
+          "2025-W39",
+          "2025-W40",
+          "2025-W41",
+          "2025-W42",
+          "2025-W43",
+          "2025-W44",
+          "2025-W45",
+          "2025-W46",
+          "2025-W47",
+          "2025-W48",
+          "2025-W49",
+          "2025-W50",
+          "2025-W51",
+          "2025-W52",
+          "2026-W01"
+        ],
+        "std_dev": 7.3,
+        "pct_weeks_above_95": 17.0,
+        "mean_weekly_otd": 87.2
+      },
+      "Carrier B|Standard": {
+        "weekly_otd_values": [
+          97.9,
+          82.8,
+          80.4,
+          95.7,
+          96.4,
+          94.5,
+          94.9,
+          97.3,
+          88.3,
+          82.3,
+          87.7,
+          95.5,
+          80.4,
+          89.3,
+          90.3,
+          85.4,
+          96.0,
+          91.9,
+          100.0,
+          91.4,
+          86.7,
+          90.5,
+          89.3,
+          94.2,
+          82.3,
+          88.7,
+          91.3,
+          88.4,
+          84.4,
+          75.2,
+          79.6,
+          91.5,
+          87.7,
+          95.3,
+          92.3,
+          92.0,
+          88.4,
+          96.4,
+          95.6,
+          95.3,
+          83.8,
+          95.3,
+          94.0,
+          96.4,
+          91.9,
+          98.8,
+          70.0,
+          83.8,
+          78.8,
+          75.2,
+          67.8,
+          84.5,
+          99.3
+        ],
+        "weeks": [
+          "2025-W01",
+          "2025-W02",
+          "2025-W03",
+          "2025-W04",
+          "2025-W05",
+          "2025-W06",
+          "2025-W07",
+          "2025-W08",
+          "2025-W09",
+          "2025-W10",
+          "2025-W11",
+          "2025-W12",
+          "2025-W13",
+          "2025-W14",
+          "2025-W15",
+          "2025-W16",
+          "2025-W17",
+          "2025-W18",
+          "2025-W19",
+          "2025-W20",
+          "2025-W21",
+          "2025-W22",
+          "2025-W23",
+          "2025-W24",
+          "2025-W25",
+          "2025-W26",
+          "2025-W27",
+          "2025-W28",
+          "2025-W29",
+          "2025-W30",
+          "2025-W31",
+          "2025-W32",
+          "2025-W33",
+          "2025-W34",
+          "2025-W35",
+          "2025-W36",
+          "2025-W37",
+          "2025-W38",
+          "2025-W39",
+          "2025-W40",
+          "2025-W41",
+          "2025-W42",
+          "2025-W43",
+          "2025-W44",
+          "2025-W45",
+          "2025-W46",
+          "2025-W47",
+          "2025-W48",
+          "2025-W49",
+          "2025-W50",
+          "2025-W51",
+          "2025-W52",
+          "2026-W01"
+        ],
+        "std_dev": 7.5,
+        "pct_weeks_above_95": 28.3,
+        "mean_weekly_otd": 89.1
+      }
+    }
+  },
+  "volatility": {
+    "by_carrier": {
+      "Carrier A": {
+        "max_weekly_otd": 92.5,
+        "min_weekly_otd": 79.2,
+        "range": 13.3,
+        "std_dev": 3.1
+      },
+      "Carrier B": {
+        "max_weekly_otd": 99.5,
+        "min_weekly_otd": 68.5,
+        "range": 31.0,
+        "std_dev": 7.2
+      }
+    },
+    "by_service": {
+      "Carrier A|Next Day": {
+        "max_weekly_otd": 97.1,
+        "min_weekly_otd": 80.1,
+        "range": 17.0,
+        "std_dev": 3.5
+      },
+      "Carrier A|Standard": {
+        "max_weekly_otd": 92.8,
+        "min_weekly_otd": 77.7,
+        "range": 15.1,
+        "std_dev": 3.4
+      },
+      "Carrier B|Next Day": {
+        "max_weekly_otd": 100.0,
+        "min_weekly_otd": 69.6,
+        "range": 30.4,
+        "std_dev": 7.3
+      },
+      "Carrier B|Standard": {
+        "max_weekly_otd": 100.0,
+        "min_weekly_otd": 67.8,
+        "range": 32.2,
+        "std_dev": 7.5
+      }
+    }
+  },
+  "severity_distribution": {
+    "Carrier A": {
+      "total_late": 3346,
+      "1_day_late": {
+        "count": 1417,
+        "pct_of_late": 42.3,
+        "pct_of_total": 5.0
+      },
+      "2_days_late": {
+        "count": 740,
+        "pct_of_late": 22.1,
+        "pct_of_total": 2.6
+      },
+      "3_plus_days_late": {
+        "count": 555,
+        "pct_of_late": 16.6,
+        "pct_of_total": 2.0
+      }
+    },
+    "Carrier B": {
+      "total_late": 2211,
+      "1_day_late": {
+        "count": 936,
+        "pct_of_late": 42.3,
+        "pct_of_total": 4.9
+      },
+      "2_days_late": {
+        "count": 483,
+        "pct_of_late": 21.8,
+        "pct_of_total": 2.5
+      },
+      "3_plus_days_late": {
+        "count": 367,
+        "pct_of_late": 16.6,
+        "pct_of_total": 1.9
+      }
+    }
+  },
+  "regional_performance": {
+    "Carrier A": {
+      "regions": [
+        {
+          "postcode_area": "SN",
+          "otd_pct": 92.2,
+          "shipments": 358,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "E",
+          "otd_pct": 91.9,
+          "shipments": 886,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "BA",
+          "otd_pct": 91.5,
+          "shipments": 365,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "EC",
+          "otd_pct": 91.2,
+          "shipments": 885,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "SE",
+          "otd_pct": 91.1,
+          "shipments": 867,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "NE",
+          "otd_pct": 90.9,
+          "shipments": 831,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "GU",
+          "otd_pct": 90.8,
+          "shipments": 349,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "NW",
+          "otd_pct": 90.7,
+          "shipments": 895,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "WC",
+          "otd_pct": 90.6,
+          "shipments": 894,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "TA",
+          "otd_pct": 89.8,
+          "shipments": 352,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "BS",
+          "otd_pct": 89.8,
+          "shipments": 863,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "DE",
+          "otd_pct": 89.6,
+          "shipments": 346,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "B",
+          "otd_pct": 89.6,
+          "shipments": 867,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "BH",
+          "otd_pct": 89.4,
+          "shipments": 369,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "CB",
+          "otd_pct": 89.3,
+          "shipments": 373,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "ME",
+          "otd_pct": 89.3,
+          "shipments": 356,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "W",
+          "otd_pct": 89.2,
+          "shipments": 910,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "G",
+          "otd_pct": 89.2,
+          "shipments": 863,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "DT",
+          "otd_pct": 89.2,
+          "shipments": 353,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "SO",
+          "otd_pct": 89.1,
+          "shipments": 340,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "SW",
+          "otd_pct": 89.0,
+          "shipments": 824,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "OX",
+          "otd_pct": 88.9,
+          "shipments": 350,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "HR",
+          "otd_pct": 88.8,
+          "shipments": 339,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "GL",
+          "otd_pct": 88.8,
+          "shipments": 349,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "TR",
+          "otd_pct": 88.7,
+          "shipments": 388,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "N",
+          "otd_pct": 88.6,
+          "shipments": 854,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "LS",
+          "otd_pct": 88.5,
+          "shipments": 826,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "CF",
+          "otd_pct": 88.3,
+          "shipments": 852,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "NP",
+          "otd_pct": 88.2,
+          "shipments": 365,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "EH",
+          "otd_pct": 88.0,
+          "shipments": 825,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "ST",
+          "otd_pct": 88.0,
+          "shipments": 324,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "TN",
+          "otd_pct": 87.8,
+          "shipments": 343,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "L",
+          "otd_pct": 87.7,
+          "shipments": 835,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "EX",
+          "otd_pct": 87.7,
+          "shipments": 333,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "S",
+          "otd_pct": 87.5,
+          "shipments": 846,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "NG",
+          "otd_pct": 87.4,
+          "shipments": 349,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "PL",
+          "otd_pct": 87.4,
+          "shipments": 373,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "CT",
+          "otd_pct": 87.3,
+          "shipments": 371,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "WR",
+          "otd_pct": 87.2,
+          "shipments": 327,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "PE",
+          "otd_pct": 86.9,
+          "shipments": 359,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "PO",
+          "otd_pct": 86.7,
+          "shipments": 347,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "IP",
+          "otd_pct": 86.4,
+          "shipments": 323,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "M",
+          "otd_pct": 86.2,
+          "shipments": 896,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "RH",
+          "otd_pct": 85.9,
+          "shipments": 326,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "FK",
+          "otd_pct": 85.4,
+          "shipments": 316,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "DD",
+          "otd_pct": 84.9,
+          "shipments": 350,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "SY",
+          "otd_pct": 83.9,
+          "shipments": 341,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "LD",
+          "otd_pct": 83.4,
+          "shipments": 319,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "KY",
+          "otd_pct": 82.9,
+          "shipments": 345,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "LL",
+          "otd_pct": 82.4,
+          "shipments": 335,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "PH",
+          "otd_pct": 82.1,
+          "shipments": 341,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "AB",
+          "otd_pct": 81.9,
+          "shipments": 320,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "PA",
+          "otd_pct": 81.8,
+          "shipments": 329,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "SA",
+          "otd_pct": 79.7,
+          "shipments": 335,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "IV",
+          "otd_pct": 79.6,
+          "shipments": 377,
+          "confidence": "high"
+        }
+      ],
+      "top_5": [
+        "SN",
+        "E",
+        "BA",
+        "EC",
+        "SE"
+      ],
+      "bottom_5": [
+        "PH",
+        "AB",
+        "PA",
+        "SA",
+        "IV"
+      ]
+    },
+    "Carrier B": {
+      "regions": [
+        {
+          "postcode_area": "DD",
+          "otd_pct": 93.4,
+          "shipments": 212,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "RH",
+          "otd_pct": 93.4,
+          "shipments": 243,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "LL",
+          "otd_pct": 93.4,
+          "shipments": 228,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "PH",
+          "otd_pct": 93.0,
+          "shipments": 257,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "IP",
+          "otd_pct": 92.8,
+          "shipments": 209,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "WR",
+          "otd_pct": 92.5,
+          "shipments": 240,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "SY",
+          "otd_pct": 91.2,
+          "shipments": 240,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "LD",
+          "otd_pct": 91.1,
+          "shipments": 225,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "AB",
+          "otd_pct": 90.8,
+          "shipments": 240,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "HR",
+          "otd_pct": 90.7,
+          "shipments": 226,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "SA",
+          "otd_pct": 90.6,
+          "shipments": 213,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "OX",
+          "otd_pct": 90.4,
+          "shipments": 239,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "IV",
+          "otd_pct": 90.4,
+          "shipments": 271,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "G",
+          "otd_pct": 90.3,
+          "shipments": 549,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "NP",
+          "otd_pct": 90.3,
+          "shipments": 248,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "BH",
+          "otd_pct": 90.2,
+          "shipments": 256,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "NG",
+          "otd_pct": 90.1,
+          "shipments": 243,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "SN",
+          "otd_pct": 90.1,
+          "shipments": 232,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "CT",
+          "otd_pct": 90.0,
+          "shipments": 230,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "PE",
+          "otd_pct": 90.0,
+          "shipments": 220,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "PA",
+          "otd_pct": 89.9,
+          "shipments": 238,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "L",
+          "otd_pct": 89.7,
+          "shipments": 575,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "EX",
+          "otd_pct": 89.6,
+          "shipments": 240,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "M",
+          "otd_pct": 89.6,
+          "shipments": 584,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "B",
+          "otd_pct": 89.5,
+          "shipments": 617,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "TA",
+          "otd_pct": 89.5,
+          "shipments": 210,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "DE",
+          "otd_pct": 89.4,
+          "shipments": 208,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "SO",
+          "otd_pct": 89.3,
+          "shipments": 234,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "TN",
+          "otd_pct": 89.2,
+          "shipments": 241,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "EH",
+          "otd_pct": 89.1,
+          "shipments": 569,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "DT",
+          "otd_pct": 88.7,
+          "shipments": 238,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "GL",
+          "otd_pct": 88.6,
+          "shipments": 264,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "FK",
+          "otd_pct": 88.6,
+          "shipments": 210,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "NE",
+          "otd_pct": 88.4,
+          "shipments": 613,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "TR",
+          "otd_pct": 88.3,
+          "shipments": 247,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "CB",
+          "otd_pct": 88.1,
+          "shipments": 261,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "CF",
+          "otd_pct": 88.0,
+          "shipments": 573,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "LS",
+          "otd_pct": 87.9,
+          "shipments": 587,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "BS",
+          "otd_pct": 87.8,
+          "shipments": 559,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "S",
+          "otd_pct": 87.7,
+          "shipments": 583,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "ST",
+          "otd_pct": 87.7,
+          "shipments": 212,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "KY",
+          "otd_pct": 87.3,
+          "shipments": 237,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "PO",
+          "otd_pct": 87.1,
+          "shipments": 232,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "PL",
+          "otd_pct": 87.0,
+          "shipments": 215,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "SW",
+          "otd_pct": 86.8,
+          "shipments": 568,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "E",
+          "otd_pct": 86.8,
+          "shipments": 637,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "ME",
+          "otd_pct": 86.5,
+          "shipments": 237,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "WC",
+          "otd_pct": 86.5,
+          "shipments": 586,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "GU",
+          "otd_pct": 86.4,
+          "shipments": 221,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "EC",
+          "otd_pct": 86.0,
+          "shipments": 565,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "BA",
+          "otd_pct": 85.4,
+          "shipments": 198,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "N",
+          "otd_pct": 85.4,
+          "shipments": 624,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "NW",
+          "otd_pct": 85.2,
+          "shipments": 588,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "W",
+          "otd_pct": 84.7,
+          "shipments": 594,
+          "confidence": "high"
+        },
+        {
+          "postcode_area": "SE",
+          "otd_pct": 84.1,
+          "shipments": 593,
+          "confidence": "high"
+        }
+      ],
+      "top_5": [
+        "DD",
+        "RH",
+        "LL",
+        "PH",
+        "IP"
+      ],
+      "bottom_5": [
+        "BA",
+        "N",
+        "NW",
+        "W",
+        "SE"
+      ]
+    }
+  },
+  "peak_delta": {
+    "by_carrier": {
+      "Carrier A": {
+        "peak_otd": 82.2,
+        "non_peak_otd": 88.9,
+        "delta": -6.7,
+        "peak_shipments": 2936,
+        "non_peak_shipments": 25418
+      },
+      "Carrier B": {
+        "peak_otd": 76.1,
+        "non_peak_otd": 89.9,
+        "delta": -13.8,
+        "peak_shipments": 1968,
+        "non_peak_shipments": 17211
+      }
+    },
+    "by_service": {
+      "Carrier A|Next Day": {
+        "peak_otd": 84.2,
+        "non_peak_otd": 91.1,
+        "delta": -6.9,
+        "peak_shipments": 882,
+        "non_peak_shipments": 7446
+      },
+      "Carrier A|Standard": {
+        "peak_otd": 81.3,
+        "non_peak_otd": 88.0,
+        "delta": -6.7,
+        "peak_shipments": 2054,
+        "non_peak_shipments": 17972
+      },
+      "Carrier B|Next Day": {
+        "peak_otd": 78.0,
+        "non_peak_otd": 88.2,
+        "delta": -10.2,
+        "peak_shipments": 581,
+        "non_peak_shipments": 5177
+      },
+      "Carrier B|Standard": {
+        "peak_otd": 75.3,
+        "non_peak_otd": 90.6,
+        "delta": -15.3,
+        "peak_shipments": 1387,
+        "non_peak_shipments": 12034
+      }
+    }
+  },
+  "trade_offs": {
+    "best_overall_otd": "Carrier B",
+    "best_consistency": "Carrier A",
+    "best_standard_service": "Carrier B",
+    "best_rural_coverage": "Carrier B",
+    "best_peak_resilience": "Carrier A",
+    "highest_risk": "Carrier B (peak volatility)"
+  }
+}

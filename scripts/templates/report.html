@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ metadata.report_title }} — {{ metadata.customer_name }}</title>
+    <style>{{ css }}</style>
+</head>
+<body>
+
+<!-- PAGE 1: EXEC SNAPSHOT -->
+<div class="page">
+    <div class="page-header">
+        <div class="logo">Metrica</div>
+        <div class="page-title">Carrier Performance Analysis</div>
+    </div>
+
+    <h1>{{ metadata.report_title }}</h1>
+    <p style="font-size: 10pt; color: #475569; margin-bottom: 16px;">
+        Prepared for {{ metadata.customer_name }} — {{ metadata.generated_at[:10] }}
+    </p>
+
+    <div class="scope-box">
+        Period: {{ metadata.period_start }} – {{ metadata.period_end }} &nbsp;|&nbsp;
+        Geography: {{ metadata.geography }} &nbsp;|&nbsp;
+        Services: {{ metadata.services | join(', ') }} &nbsp;|&nbsp;
+        Shipments analysed: {{ "{:,}".format(metadata.total_shipments_analysed) }}
+    </div>
+
+    <div class="tldr-box">
+        {{ tldr }}
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>KPI</th>
+                {% for carrier in metadata.carriers %}
+                <th class="num">{{ carrier }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>On-Time (Overall)</td>
+                {% for carrier in metadata.carriers %}
+                <td class="num">{{ on_time.overall_otd[carrier].otd_pct }}%</td>
+                {% endfor %}
+            </tr>
+            {% for service in metadata.services %}
+            <tr>
+                <td>On-Time ({{ service }})</td>
+                {% for carrier in metadata.carriers %}
+                {% set key = carrier ~ '|' ~ service %}
+                <td class="num">{{ on_time.by_service[key].otd_pct }}%</td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+            <tr>
+                <td>Weekly Consistency (Std Dev)</td>
+                {% for carrier in metadata.carriers %}
+                <td class="num">{{ consistency.by_carrier[carrier].std_dev }}%</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td>Volatility (Range)</td>
+                {% for carrier in metadata.carriers %}
+                <td class="num">{{ volatility.by_carrier[carrier].range }}pp</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td>Peak Delta</td>
+                {% for carrier in metadata.carriers %}
+                <td class="num">{{ peak_delta.by_carrier[carrier].delta }}pp</td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+
+    <ul class="trade-offs">
+        <li>Best overall reliability: <strong>{{ trade_offs.best_overall_otd }}</strong></li>
+        <li>Best standard service: <strong>{{ trade_offs.best_standard_service }}</strong></li>
+        <li>Lowest risk during peak: <strong>{{ trade_offs.best_peak_resilience }}</strong></li>
+        <li>Best rural coverage: <strong>{{ trade_offs.best_rural_coverage }}</strong></li>
+    </ul>
+
+    <div class="page-footer">
+        <span>Metrica Logistics Intelligence &nbsp;|&nbsp; Confidential</span>
+        <span>Page 1 of 8</span>
+    </div>
+</div>
+
+<!-- PAGE 2: ON-TIME PERFORMANCE -->
+<div class="page">
+    <div class="page-header">
+        <div class="logo">Metrica</div>
+        <div class="page-title">On-Time Performance</div>
+    </div>
+
+    <h2>On-Time Delivery vs Promise</h2>
+
+    <div class="chart-container">
+        {{ otd_bar_chart }}
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Carrier / Service</th>
+                <th class="num">OTD %</th>
+                <th class="num">On Time</th>
+                <th class="num">Late</th>
+                <th class="num">Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key in on_time.by_service.keys() | sort %}
+            {% set d = on_time.by_service[key] %}
+            {% set parts = key.split('|') %}
+            <tr>
+                <td>{{ parts[0] }} — {{ parts[1] }}</td>
+                <td class="num">{{ d.otd_pct }}%</td>
+                <td class="num">{{ "{:,}".format(d.on_time) }}</td>
+                <td class="num">{{ "{:,}".format(d.late) }}</td>
+                <td class="num">{{ "{:,}".format(d.total_shipments) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="interpretation">
+        {% set ca_otd = on_time.overall_otd[metadata.carriers[0]].otd_pct %}
+        {% set cb_otd = on_time.overall_otd[metadata.carriers[1]].otd_pct %}
+        {% set ca_nd = on_time.by_service[metadata.carriers[0] ~ '|Next Day'].otd_pct %}
+        {% set cb_nd = on_time.by_service[metadata.carriers[1] ~ '|Next Day'].otd_pct %}
+        {% set ca_st = on_time.by_service[metadata.carriers[0] ~ '|Standard'].otd_pct %}
+        {% set cb_st = on_time.by_service[metadata.carriers[1] ~ '|Standard'].otd_pct %}
+        Overall on-time rates are comparable: {{ metadata.carriers[0] }} at {{ ca_otd }}% vs {{ metadata.carriers[1] }} at {{ cb_otd }}%.
+        However, the picture changes by service type. {{ metadata.carriers[0] }} leads on Next Day ({{ ca_nd }}% vs {{ cb_nd }}%),
+        while {{ metadata.carriers[1] }} outperforms on Standard deliveries ({{ cb_st }}% vs {{ ca_st }}%).
+        This split is important for any retailer whose volume skews towards one service over the other.
+    </div>
+
+    <div class="page-footer">
+        <span>Metrica Logistics Intelligence &nbsp;|&nbsp; Confidential</span>
+        <span>Page 2 of 8</span>
+    </div>
+</div>
+
+<!-- PAGE 3: WEEKLY CONSISTENCY & VOLATILITY -->
+<div class="page">
+    <div class="page-header">
+        <div class="logo">Metrica</div>
+        <div class="page-title">Weekly Consistency &amp; Volatility</div>
+    </div>
+
+    <h2>Weekly On-Time Performance</h2>
+
+    <div class="chart-container">
+        {{ weekly_line_chart }}
+    </div>
+
+    <div class="stats-box">
+        {% for carrier in metadata.carriers %}
+        <div style="flex: 1;">
+            <h3 style="margin-bottom: 8px;">{{ carrier }}</h3>
+            <div style="display: flex; gap: 16px;">
+                <div class="stat-item">
+                    <span class="stat-value">{{ consistency.by_carrier[carrier].std_dev }}%</span>
+                    <span class="stat-label">Std Dev</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">{{ volatility.by_carrier[carrier].range }}pp</span>
+                    <span class="stat-label">Range</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value">{{ consistency.by_carrier[carrier].pct_weeks_above_95 }}%</span>
+                    <span class="stat-label">Weeks ≥95%</span>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="interpretation">
+        {% set ca = metadata.carriers[0] %}
+        {% set cb = metadata.carriers[1] %}
+        {{ ca }}'s weekly performance is markedly more consistent, with a standard deviation of
+        {{ consistency.by_carrier[ca].std_dev }}% compared to {{ cb }}'s {{ consistency.by_carrier[cb].std_dev }}%.
+        The volatility range tells a similar story: {{ ca }} varies by {{ volatility.by_carrier[ca].range }}pp week to week,
+        while {{ cb }} swings by {{ volatility.by_carrier[cb].range }}pp.
+        For operations planning, this means {{ ca }} is more predictable, while {{ cb }} carries higher
+        week-to-week risk of performance dips.
+    </div>
+
+    <div class="page-footer">
+        <span>Metrica Logistics Intelligence &nbsp;|&nbsp; Confidential</span>
+        <span>Page 3 of 8</span>
+    </div>
+</div>
+
+<!-- PAGE 4: SEVERITY DISTRIBUTION -->
+<div class="page">
+    <div class="page-header">
+        <div class="logo">Metrica</div>
+        <div class="page-title">Severity Distribution</div>
+    </div>
+
+    <h2>Late Shipment Severity</h2>
+
+    <div class="chart-container">
+        {{ severity_chart }}
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Carrier</th>
+                <th class="num">Total Late</th>
+                <th class="num">1 Day Late</th>
+                <th class="num">2 Days Late</th>
+                <th class="num">3+ Days Late</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for carrier in metadata.carriers %}
+            {% set d = severity[carrier] %}
+            <tr>
+                <td>{{ carrier }}</td>
+                <td class="num">{{ "{:,}".format(d.total_late) }}</td>
+                <td class="num">{{ "{:,}".format(d['1_day_late'].count) }} ({{ d['1_day_late'].pct_of_late }}%)</td>
+                <td class="num">{{ "{:,}".format(d['2_days_late'].count) }} ({{ d['2_days_late'].pct_of_late }}%)</td>
+                <td class="num">{{ "{:,}".format(d['3_plus_days_late'].count) }} ({{ d['3_plus_days_late'].pct_of_late }}%)</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="interpretation">
+        {% set ca = metadata.carriers[0] %}
+        {% set cb = metadata.carriers[1] %}
+        When shipments are late, the severity distribution is broadly similar between both carriers.
+        Approximately half of late shipments arrive just one day behind schedule for both.
+        {{ ca }} has {{ severity[ca].total_late | int }} late shipments in total, while {{ cb }} has
+        {{ severity[cb].total_late | int }}. The proportion of severely late shipments (3+ days)
+        represents the most impactful failures for customer experience and should be weighted
+        accordingly in any switching decision.
+    </div>
+
+    <div class="page-footer">
+        <span>Metrica Logistics Intelligence &nbsp;|&nbsp; Confidential</span>
+        <span>Page 4 of 8</span>
+    </div>
+</div>
+
+<!-- PAGE 5: REGIONAL PERFORMANCE -->
+<div class="page">
+    <div class="page-header">
+        <div class="logo">Metrica</div>
+        <div class="page-title">Regional Performance</div>
+    </div>
+
+    <h2>Performance by Postcode Area</h2>
+
+    <div class="side-by-side">
+        {% for carrier in metadata.carriers %}
+        <div>
+            <h3>{{ carrier }}</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Area</th>
+                        <th class="num">OTD %</th>
+                        <th class="num">Vol.</th>
+                        <th>Conf.</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% set regions = regional[carrier].regions %}
+                    <!-- Top 5 -->
+                    {% for r in regions[:5] %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ r.postcode_area }}</td>
+                        <td class="num val-good">{{ r.otd_pct }}%</td>
+                        <td class="num">{{ "{:,}".format(r.shipments) }}</td>
+                        <td><span class="badge-{{ r.confidence }}">{{ r.confidence }}</span></td>
+                    </tr>
+                    {% endfor %}
+                    <!-- Separator -->
+                    <tr><td colspan="5" style="text-align: center; color: #94a3b8; font-size: 9pt;">⋯</td></tr>
+                    <!-- Bottom 5 -->
+                    {% for r in regions[-5:] %}
+                    <tr>
+                        <td>{{ regions | length - 4 + loop.index0 }}</td>
+                        <td>{{ r.postcode_area }}</td>
+                        <td class="num val-bad">{{ r.otd_pct }}%</td>
+                        <td class="num">{{ "{:,}".format(r.shipments) }}</td>
+                        <td><span class="badge-{{ r.confidence }}">{{ r.confidence }}</span></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="interpretation">
+        {% set ca = metadata.carriers[0] %}
+        {% set cb = metadata.carriers[1] %}
+        Regional performance reveals the most significant differences between the two carriers.
+        {{ ca }}'s strongest areas are {{ regional[ca].top_5[:3] | join(', ') }}, while its weakest are
+        {{ regional[ca].bottom_5[-3:] | join(', ') }}.
+        {{ cb }} shows stronger performance in rural and Scottish/Welsh postcodes
+        ({{ regional[cb].top_5[:3] | join(', ') }}), but underperforms in
+        {{ regional[cb].bottom_5[-3:] | join(', ') }}.
+        Regions marked as "low confidence" have fewer than {{ sufficiency_threshold }} shipments
+        and should be interpreted with caution.
+    </div>
+
+    <div class="page-footer">
+        <span>Metrica Logistics Intelligence &nbsp;|&nbsp; Confidential</span>
+        <span>Page 5 of 8</span>
+    </div>
+</div>
+
+<!-- PAGE 6: PEAK PERFORMANCE -->
+{% if metadata.intent == 'tendering' %}
+<div class="page">
+    <div class="page-header">
+        <div class="logo">Metrica</div>
+        <div class="page-title">Peak Performance</div>
+    </div>
+
+    <h2>Peak vs Non-Peak Performance</h2>
+    <p style="color: #475569; font-size: 10pt; margin-bottom: 16px;">
+        Peak window: {{ metadata.peak_window }}
+    </p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Carrier</th>
+                <th class="num">Non-Peak OTD</th>
+                <th class="num">Peak OTD</th>
+                <th class="num">Delta</th>
+                <th class="num">Peak Volume</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for carrier in metadata.carriers %}
+            {% set d = peak_delta.by_carrier[carrier] %}
+            <tr>
+                <td>{{ carrier }}</td>
+                <td class="num">{{ d.non_peak_otd }}%</td>
+                <td class="num">{{ d.peak_otd }}%</td>
+                <td class="num {% if d.delta < -10 %}val-bad{% elif d.delta < -5 %}val-warn{% endif %}">
+                    {{ d.delta }}pp
+                </td>
+                <td class="num">{{ "{:,}".format(d.peak_shipments) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3 style="margin-top: 24px;">Peak Performance by Service</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Carrier / Service</th>
+                <th class="num">Non-Peak OTD</th>
+                <th class="num">Peak OTD</th>
+                <th class="num">Delta</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for key in peak_delta.by_service.keys() | sort %}
+            {% set d = peak_delta.by_service[key] %}
+            {% set parts = key.split('|') %}
+            <tr>
+                <td>{{ parts[0] }} — {{ parts[1] }}</td>
+                <td class="num">{{ d.non_peak_otd }}%</td>
+                <td class="num">{{ d.peak_otd }}%</td>
+                <td class="num {% if d.delta < -10 %}val-bad{% elif d.delta < -5 %}val-warn{% endif %}">
+                    {{ d.delta }}pp
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="interpretation">
+        {% set ca = metadata.carriers[0] %}
+        {% set cb = metadata.carriers[1] %}
+        Peak trading represents the highest-stakes period for parcel delivery.
+        {{ ca }}'s performance drops {{ peak_delta.by_carrier[ca].delta }}pp during peak,
+        while {{ cb }} experiences a significantly larger decline of {{ peak_delta.by_carrier[cb].delta }}pp.
+        This {{ (peak_delta.by_carrier[cb].delta | abs - peak_delta.by_carrier[ca].delta | abs) | round(1) }}pp
+        difference in peak resilience is material — during the busiest weeks of the year,
+        {{ cb }}'s on-time rate falls to {{ peak_delta.by_carrier[cb].peak_otd }}%, which may
+        create operational pressure on customer service and returns handling.
+    </div>
+
+    <div class="page-footer">
+        <span>Metrica Logistics Intelligence &nbsp;|&nbsp; Confidential</span>
+        <span>Page 6 of 8</span>
+    </div>
+</div>
+{% endif %}
+
+<!-- PAGE 7: SUMMARY & DECISION ASSESSMENT -->
+<div class="page">
+    <div class="page-header">
+        <div class="logo">Metrica</div>
+        <div class="page-title">Summary &amp; Decision Assessment</div>
+    </div>
+
+    <h2>Decision Framework</h2>
+
+    <p>This section structures the evidence to help inform the carrier switching decision.
+    It is not a recommendation — it is a framework based on the data.</p>
+
+    <div class="decision-box">
+        <div class="option">
+            <h3>If your priority is consistency and peak resilience</h3>
+            <p>→ <strong>{{ trade_offs.best_consistency }}</strong> delivers more predictable week-to-week performance
+            (std dev {{ consistency.by_carrier[trade_offs.best_consistency].std_dev }}%) and maintains stronger
+            on-time rates during the peak trading window
+            ({{ peak_delta.by_carrier[trade_offs.best_peak_resilience].delta }}pp drop vs
+            {% set other_carrier = metadata.carriers[1] if trade_offs.best_peak_resilience == metadata.carriers[0] else metadata.carriers[0] %}
+            {{ peak_delta.by_carrier[other_carrier].delta }}pp).</p>
+        </div>
+
+        <div class="option">
+            <h3>If your priority is standard delivery speed and rural coverage</h3>
+            <p>→ <strong>{{ trade_offs.best_standard_service }}</strong> outperforms on Standard service
+            ({{ on_time.by_service[trade_offs.best_standard_service ~ '|Standard'].otd_pct }}% vs
+            {% set other = metadata.carriers[1] if trade_offs.best_standard_service == metadata.carriers[0] else metadata.carriers[0] %}
+            {{ on_time.by_service[other ~ '|Standard'].otd_pct }}%) and provides better coverage
+            across rural Scottish and Welsh postcode areas.</p>
+        </div>
+
+        <div class="risk">
+            <h3>Key Risk</h3>
+            <p>{{ trade_offs.highest_risk }}. During the peak window,
+            {% set risk_carrier = trade_offs.highest_risk.split(' (')[0] %}
+            {{ risk_carrier }}'s on-time rate drops to {{ peak_delta.by_carrier[risk_carrier].peak_otd }}%,
+            and its week-to-week volatility ({{ volatility.by_carrier[risk_carrier].range }}pp range)
+            means some weeks could see significantly worse performance than the average suggests.</p>
+        </div>
+    </div>
+
+    <div class="page-footer">
+        <span>Metrica Logistics Intelligence &nbsp;|&nbsp; Confidential</span>
+        <span>Page 7 of 8</span>
+    </div>
+</div>
+
+<!-- PAGE 8: METHOD & DEFINITIONS -->
+<div class="page">
+    <div class="page-header">
+        <div class="logo">Metrica</div>
+        <div class="page-title">Method &amp; Definitions</div>
+    </div>
+
+    <h2>Methodology</h2>
+
+    <dl class="definition-list">
+        <dt>On-Time vs Promise</dt>
+        <dd>A shipment is "on time" if its actual delivery datetime is on or before the promised delivery datetime.
+        The promise is calculated from the dispatch date plus the carrier's stated transit days, respecting
+        the carrier's day-type definition (working days or calendar days).</dd>
+
+        <dt>Working Days</dt>
+        <dd>
+            {% for carrier in metadata.carriers %}
+            <strong>{{ carrier }}:</strong>
+            {% for key, promise in promises.items() %}
+            {% if promise.carrier_name == carrier %}
+            {{ promise.service_name }}: {{ promise.promised_transit_days }}
+            {{ promise.promised_day_type.replace('_', ' ') }}
+            ({{ promise.working_days | join(', ') }}).
+            {% endif %}
+            {% endfor %}
+            <br>
+            {% endfor %}
+        </dd>
+
+        <dt>Peak Window</dt>
+        <dd>{{ metadata.peak_window }}. This period captures Black Friday, Cyber Monday, and the
+        pre-Christmas delivery surge — typically the highest-volume and highest-pressure period
+        for UK parcel carriers.</dd>
+
+        <dt>Data Sufficiency</dt>
+        <dd>A minimum of {{ sufficiency_threshold }} shipments is required per slice for high-confidence
+        reporting. Slices below this threshold are shown but flagged as "low confidence" and should
+        be interpreted with caution.</dd>
+
+        <dt>Regional Granularity</dt>
+        <dd>Performance is measured at the UK postcode area level (the first 1-2 letters of the postcode,
+        e.g., "SW", "BA"). This provides a meaningful geographic comparison without requiring
+        full postcode-level data.</dd>
+
+        <dt>Data Source</dt>
+        <dd>Third-party shipment tracking data. All timestamps are in UTC.</dd>
+
+        <dt>Shipment Scope</dt>
+        <dd>Only shipments with status "Delivered" are included in KPI calculations.
+        Failed, returned, and lost shipments are excluded from performance metrics.
+        Total shipments analysed: {{ "{:,}".format(metadata.total_shipments_analysed) }}.</dd>
+    </dl>
+
+    <div class="disclaimer">
+        This report compares carrier performance based on available third-party data.
+        It does not constitute a recommendation. The analysis is intended to support
+        informed decision-making and should be considered alongside other factors
+        relevant to the carrier selection process.
+    </div>
+
+    <div class="page-footer">
+        <span>Metrica Logistics Intelligence &nbsp;|&nbsp; Confidential</span>
+        <span>Page 8 of 8</span>
+    </div>
+</div>
+
+</body>
+</html>
