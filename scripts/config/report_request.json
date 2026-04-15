@@ -1,0 +1,14 @@
+{
+  "customer_name": "Demo Customer",
+  "report_title": "Carrier Performance Comparison",
+  "period_start": "2025-01-01",
+  "period_end": "2025-12-31",
+  "geography_scope": "UK",
+  "carriers_in_scope": ["Carrier A", "Carrier B"],
+  "services_in_scope": ["Next Day", "Standard"],
+  "intent": "tendering",
+  "peak_start": "2025-11-15",
+  "peak_end": "2025-12-23",
+  "data_sufficiency_threshold": 30,
+  "generated_date": "2026-04-15"
+}

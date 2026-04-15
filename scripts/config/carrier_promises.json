@@ -1,0 +1,32 @@
+{
+  "promises": [
+    {
+      "carrier_name": "Carrier A",
+      "service_name": "Next Day",
+      "promised_transit_days": 1,
+      "promised_day_type": "working_days",
+      "working_days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    },
+    {
+      "carrier_name": "Carrier A",
+      "service_name": "Standard",
+      "promised_transit_days": 3,
+      "promised_day_type": "working_days",
+      "working_days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
+    },
+    {
+      "carrier_name": "Carrier B",
+      "service_name": "Next Day",
+      "promised_transit_days": 1,
+      "promised_day_type": "working_days",
+      "working_days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+    },
+    {
+      "carrier_name": "Carrier B",
+      "service_name": "Standard",
+      "promised_transit_days": 2,
+      "promised_day_type": "calendar_days",
+      "working_days": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    }
+  ]
+}
